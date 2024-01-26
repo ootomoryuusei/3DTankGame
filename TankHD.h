@@ -30,4 +30,5 @@ public:
 	/// </summary>
 	/// <returns>int hModel_:ƒ‚ƒfƒ‹”Ô†</returns>
 	int GetModelHandle() { return hModel_; }
+
 };

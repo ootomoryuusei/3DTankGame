@@ -1,17 +1,22 @@
 #pragma once
+#include<string>
 #include "Engine/GameObject.h"
 #include"Engine/Text.h"
 
+using std::string;
 
 //■■シーンを管理するクラス
-class PlayScene : public GameObject
+class HUD : public GameObject
 {
 private:
-	int enemyNum_;
+	Text* pText_;
+	int hHud_;
+	/*std::vector<Transform> hudnumber_;*/
+	Transform hudnumber_[3];
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
-    PlayScene(GameObject* parent);
+	HUD(GameObject* parent);
 
 	//初期化
 	void Initialize() override;
@@ -24,11 +29,6 @@ public:
 
 	//開放
 	void Release() override;
-
-	//インライン定義
-	void DescEnemy() { enemyNum_--; }
-	bool IsEnemyLeft() {return enemyNum_ > 0;}
-	int GetEnemyNum() { return enemyNum_; }
 };
 
 
