@@ -2,6 +2,7 @@
 #include"Bullet.h"
 #include"Engine/Model.h"
 #include"Engine/Input.h"
+#include"Engine/SceneManager.h"
 
 TankHD::TankHD(GameObject* parent)
 	: GameObject(parent, "TankHD"), hModel_(-1), speed_(0.05), front_({ 0,0,1,0 })
@@ -38,7 +39,7 @@ void TankHD::Update()
 		Bullet* pBullet = Instantiate<Bullet>(this->GetParent()->GetParent());
 		pBullet->SetPosition(cannonTopPos);
 		pBullet->SetMoveDir(vmove);
-		pBullet->SetBulletSpeed(0.1);
+		pBullet->SetBulletSpeed(0.2);
 	}
 }
 
@@ -46,6 +47,7 @@ void TankHD::Draw()
 {
 	Model::SetTransform(hModel_, transform_);
 	Model::Draw(hModel_);
+
 }
 
 void TankHD::Release()

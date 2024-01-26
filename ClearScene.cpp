@@ -1,23 +1,20 @@
-#include "TitleScene.h"
+#include "ClearScene.h"
 #include"Engine/Image.h"
 #include"Engine/Input.h"
 #include"Engine/SceneManager.h"
 
-//コンストラクタ
-TitleScene::TitleScene(GameObject * parent)
-	: GameObject(parent, "TitleScene"),hPict_(-1)
+ClearScene::ClearScene(GameObject* parent)
+	:GameObject(parent,"ClearScene"),hPict_(-1)
 {
 }
 
-//初期化
-void TitleScene::Initialize()
+void ClearScene::Initialize()
 {
-	hPict_ = Image::Load("TitleScene.png");
+	hPict_ = Image::Load("Clear.png");
 	assert(hPict_ >= 0);
 }
 
-//更新
-void TitleScene::Update()
+void ClearScene::Update()
 {
 	if (Input::IsMouseButtonUp(0))
 	{
@@ -27,14 +24,12 @@ void TitleScene::Update()
 	}
 }
 
-//描画
-void TitleScene::Draw()
+void ClearScene::Draw()
 {
 	Image::SetTransform(hPict_, transform_);
 	Image::Draw(hPict_);
 }
 
-//開放
-void TitleScene::Release()
+void ClearScene::Release()
 {
 }

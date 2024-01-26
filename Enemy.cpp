@@ -18,11 +18,19 @@ void Enemy::Initialize()
 	SphereCollider* collision = new SphereCollider({ 0,0,0 }, 1.0f);
 	AddCollider(collision);
 	playScene_ = (PlayScene*)GetParent();
+	float x = (float)rand() / RAND_MAX;//0-1‚Ì—”
+
+	x = 2.0 * x; //0-2‚Ì—”
+	transform_.position_.x = 25.0 * (x - 1.0); //25*(-1.0-1.0)‚Ì—”
+	float z = (float)rand() / RAND_MAX;//0-1‚Ì—”
+
+	z = 2.0 * z; //0-2‚Ì—”
+	transform_.position_.z = 25.0 * (z - 1.0); //25*(-1.0-1.0)‚Ì—”
+	transform_.position_.y = 0;
 }
 
 void Enemy::Update()
 {
-	/*transform_.position_.x -= 0.01;*/
 	Grund* pGrund = (Grund*)FindObject("Grund");
 	int hGmodel = pGrund->GetModelHandle();
 	RayCastData data;
@@ -35,7 +43,6 @@ void Enemy::Update()
 	{
 		transform_.position_.y = -data.dist + 0.5f;
 	}
-
 }
 
 void Enemy::Draw()

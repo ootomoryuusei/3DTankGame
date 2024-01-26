@@ -6,9 +6,10 @@
 #include"HUD.h"
 #include"Engine/Model.h"
 #include"Engine/Camera.h"
-#include"Engine/Image.h""
+#include"Engine/Image.h"
+#include"Engine/SceneManager.h"
 
-const int ENEMY_NUM{30};
+const int ENEMY_NUM{15};
 
 //コンストラクタ
 PlayScene::PlayScene(GameObject* parent)
@@ -21,12 +22,12 @@ PlayScene::PlayScene(GameObject* parent)
 void PlayScene::Initialize()
 {
 	Instantiate<Grund>(this);
-	Instantiate<TankBD>(this);
 	enemyNum_ = ENEMY_NUM;
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < ENEMY_NUM; i++)
 	{
 		Enemy* enemy = Instantiate<Enemy>(this);
 	}
+	Instantiate<TankBD>(this);
 	Camera::SetPosition({ 0,7,-13 });
 	Camera::SetTarget({ 0,3,0 });
 	Instantiate<HUD>(this);

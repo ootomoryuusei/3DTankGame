@@ -2,9 +2,11 @@
 #include "TitleScene.h"
 #include"Grund.h"
 #include"TankHD.h"
+#include"Engine/Image.h"
 #include"Engine/Input.h"
 #include"Engine/Model.h"
 #include"Engine/Camera.h"
+#include"Engine/SceneManager.h"
 
 enum CAM_TYPE
 {
@@ -16,7 +18,7 @@ enum CAM_TYPE
 };
 //コンストラクタ
 TankBD::TankBD(GameObject* parent)
-	: GameObject(parent, "TankBD"), hModel_(-1),speed_(0.05),front_({0,0,1,0}),camState_(CAM_TYPE::FIXED_TYPE)
+	: GameObject(parent, "TankBD"), hModel_(-1), speed_(0.05), front_({ 0,0,1,0 }), camState_(CAM_TYPE::FIXED_TYPE)
 {
 }
 
@@ -73,7 +75,6 @@ void TankBD::Update()
 	{
 		transform_.position_.y = -data.dist + 0.5f;
 	}
-#if 1
 	if (Input::IsKeyDown(DIK_Z))
 	{
 		camState_++;
@@ -120,7 +121,12 @@ void TankBD::Update()
 	default:
 		break;
 	}
-#endif
+	if (FindObject("Enemy") == nullptr)
+	{
+		SceneManager* pSM = (SceneManager*)(FindObject("SceneManager"));
+		/*SceneManager* pSM = static_cast<SceneManager*>(FindObject("SceneManager"));*/
+		pSM->ChangeScene(SCENE_ID_CLEAR);
+	}
 }
 
 //描画
@@ -128,7 +134,6 @@ void TankBD::Draw()
 {
 	Model::SetTransform(hModel_, transform_);
 	Model::Draw(hModel_);
-
 }
 
 //開放
